@@ -1,0 +1,1 @@
+module: "github.com/Split174/cue-prometheus"
