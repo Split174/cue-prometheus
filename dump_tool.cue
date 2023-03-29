@@ -1,18 +1,20 @@
 package scripts
 
 import "tool/cli"
+
 //import "encoding/yaml"
 import "tool/file"
-import "tool/exec"
-//import "path"
 
-command: foreach: {
+import ( "tool/exec"
+	//import "path"
+)
+
+command: dump: {
 
 	// get a list of files
 	list: file.Glob & {
 		glob: "./values/**/**.cue"
 	}
-
 
 	// comprehend tasks for each file, also an inferred dependency
 	for _, filepath in list.files {
@@ -29,7 +31,7 @@ command: foreach: {
 				contents: string
 			}
 			print: cli.Print & {
-				text: echo.stdout + "\n---" // an inferred dependency
+				text: echo.stdout + "---" // an inferred dependency
 			}
 		}
 	}
